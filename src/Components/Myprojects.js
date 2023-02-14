@@ -9,7 +9,7 @@ export default function Myprojects(props) {
   const [projectList, setProjectList] = useState([]);
 
   async function CreateNewProject(newProject) {
-    let res = await fetch(`http://localhost:3005/projects/createproject`, {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/projects/createproject`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -24,7 +24,7 @@ export default function Myprojects(props) {
   async function GetAllProjects() {
     let id = user.id;
     console.log("hitting the all projects function", id);
-    let res = await fetch(`http://localhost:3005/projects/findall/${id}`);
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/projects/findall/${id}`);
     res = await res.json();
     console.log(res);
     setProjectList(res);

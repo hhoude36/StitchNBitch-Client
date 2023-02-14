@@ -9,17 +9,21 @@ import CardMedia from "@mui/material/CardMedia";
 import CardActions from "@mui/material/CardActions";
 import GroupCard from "../Components/GroupCard";
 import { Link } from "react-router-dom";
-import Stack from "@mui/material/Stack";
-import AddIcon from "@mui/icons-material/Add";
-import CreateGroup from "../Components/CreateGroup";
+import Stack from '@mui/material/Stack';
+import AddIcon from '@mui/icons-material/Add';
+import CreateGroup from '../Components/CreateGroup'
 
-import "./GroupCards.css";
+import './GroupCards.css';
+
+
+
 
 export default function Dashboard(props) {
   const [createGroupClicked, setCreateGroupClicked] = useState(false);
-  const [newGroupId, setnewGroupId] = useState("");
+  const [newGroupId, setnewGroupId] = useState("")
   const [userGroups, setUserGroups] = useState([]);
 
+  
   const { user, setUser, isLoggedIn, setIsLoggedIn } = props;
 
   const navigate = useNavigate();
@@ -49,18 +53,20 @@ export default function Dashboard(props) {
           sx={{ borderRadius: 30 }}
         ></CardMedia>
       </Box>
-      <Box
-        width="1/2"
-        sx={{
-          display: "flex",
-          flexDirection: "column",
-          justifyContent: "flex-end",
-        }}
+      <Box width="1/2" sx={{
+        display: 'flex',
+        flexDirection:'column',
+        justifyContent: 'flex-end'
+      }}
       >
-        <Typography variant="h4" marginTop="10px" marginLeft="10px">
+        <Typography 
+        variant="h4" 
+        marginTop="10px" 
+        marginLeft="10px">
           {user.name}'s Profile
         </Typography>
-        <CardActions>
+        <CardActions
+        >
           <Button
             variant="contained"
             color="secondary"
@@ -80,134 +86,139 @@ export default function Dashboard(props) {
     </Card>
   );
 
-  //GROUP STUFF
-  //=================================================
-  function onAddClick(e) {
-    e.preventDefault();
-    console.log("Add was clicked");
-    setCreateGroupClicked(!createGroupClicked);
-  }
 
-  function onNoThanksCLicked(event) {
-    setCreateGroupClicked(!createGroupClicked);
-    GetAllUserGroups();
-  }
+//GROUP STUFF
+//================================================= 
+function onAddClick(e) {
+  e.preventDefault();
+  console.log("Add was clicked")
+  setCreateGroupClicked(!createGroupClicked);
+}
 
-  //GET ALL USERS FUNCTION
+
+function onNoThanksCLicked(event) {
+  setCreateGroupClicked(!createGroupClicked)
+  GetAllUserGroups();
+}
+
+//GET ALL USERS FUNCTION
   //=======================
   async function GetAllUserGroups() {
-    console.log("I am hitting get all groups function");
-    let theid = user.id;
-    console.log(theid);
-    let res = await fetch(`http://localhost:3005/groups/findmembers/${theid}`);
+    console.log("I am hitting get all user groups function")
+    let theid = user.id
+    console.log(theid)
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findmembers/${theid}`)
     res = await res.json();
+    console.log(res, "data from get all user groups")
     setUserGroups(res);
-  }
+}
 
-  useEffect(() => {
+
+useEffect(() => {
     GetAllUserGroups();
-  }, []);
+}, []);
 
-  async function CreateNewGroup(newGroup) {
-    console.log("I am hitting the create group function");
-    let res = await fetch("http://localhost:3005/groups/creategroup", {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newGroup),
-    });
-    res = await res.json();
-    console.log(res.results.id);
-    setnewGroupId(res.results.id);
-    GetAllGroups();
+
+async function CreateNewGroup(newGroup) {
+  console.log("I am hitting the create group function")
+  let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/creategroup`,
+      {
+          method: 'POST',
+          mode: 'cors',
+          headers: {
+              'Accept': 'application/json',
+              'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(newGroup)
+      });
+  res = await res.json();
+  console.log(res.results.id)
+  setnewGroupId(res.results.id)
+  GetAllUserGroups()
+}
+
+
+
+
+    //LEAVE GROUP
+    //===========================================
+
+    async function LeaveGroup(id) {
+      console.log("I am hitting LeaveGroup function on Group Page" + id)
+      let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroupmember/${id}`);
+      res = await res.json();
+      console.log(res);
+      GetAllUserGroups()
   }
 
-  //LEAVE GROUP
-  //===========================================
 
-  async function LeaveGroup(id) {
-    console.log("I am hitting LeaveGroup function on Group Page" + id);
-    let res = await fetch(
-      `http://localhost:3005/groups/deletegroupmember/${id}`
-    );
-    res = await res.json();
-    console.log(res);
-    GetAllUserGroups();
-  }
+   //LOOPING THROUGH FOR THE CARDS
+    //================================
+// function GetAllGroups(){
+//   console.log("Get All Groups is firing")
+//   useEffect(() => {
+//     console.log("use effect inside of get all groups is firing")
+//     GetAllUserGroups();
+// }, []);
+// }
 
-  //LOOPING THROUGH FOR THE CARDS
-  //================================
-  function GetAllGroups() {
-    useEffect(() => {
-      GetAllUserGroups();
-    }, []);
-  }
 
-  let theGroupCards;
-  if (userGroups.length > 0) {
-    theGroupCards = userGroups.map(function (singleGroup) {
-      return (
+
+
+
+    let theGroupCards;
+    if (userGroups.length > 0) {
+        theGroupCards = userGroups.map(function (singleGroup) {
+            return (
         <div>
-          <GroupCard
-            key={user.id}
-            GetAllUserGroups={GetAllUserGroups}
-            LeaveGroup={LeaveGroup}
-            user={user}
-            setUser={setUser}
-            isLoggedIn={isLoggedIn}
-            setIsLoggedIn={setIsLoggedIn}
-            singleGroup={singleGroup}
-          />
-        </div>
-      );
-    });
-  }
-  //if there are none, send a message.
-  //================================
-  else {
-    theGroupCards = (
-      <div className="noGroupsDiv">
-        {" "}
-        <Typography className="homeType" variant="h5" component="p">
-          Sorry, you don't belong to any groups. <br />
-          <Stack className="findGroupsButton" direction="row" spacing={2}>
-            <Link to="/search">
-              <Button variant="contained" color="secondary">
-                Search Groups
-              </Button>
-            </Link>
-          </Stack>
-        </Typography>
-      </div>
-    );
-  }
+            
+                <GroupCard 
+                key={user.id}
+                GetAllUserGroups={GetAllUserGroups} 
+                LeaveGroup={LeaveGroup} 
+                user={user} 
+                setUser={setUser} 
+                isLoggedIn={isLoggedIn} 
+                setIsLoggedIn={setIsLoggedIn} 
+                singleGroup={singleGroup}
+                />
+            </div>
 
-  //if the add group button is clicked
-  //================================
-  let addGroupArea = (
-    <Stack className="AddButton" direction="row" spacing={2}>
-      <Button onClick={onAddClick} variant="contained">
-        <AddIcon /> Create Group
-      </Button>
-    </Stack>
-  );
-  if (createGroupClicked) {
-    return (addGroupArea = (
-      <CreateGroup
-        handleClose={onAddClick}
-        open={createGroupClicked}
-        newGroupId={newGroupId}
-        onNoThanksCLicked={onNoThanksCLicked}
-        CreateNewGroup={CreateNewGroup}
-        createGroupClicked={createGroupClicked}
-        setCreateGroupClicked={setCreateGroupClicked}
-        user={user}
-      />
-    ));
-  }
+           
+            )
+        })
+    }
+    //if there are none, send a message. 
+    //================================
+    else {
+        theGroupCards =    <div className="noGroupsDiv"> <Typography className="homeType" variant="h5" component="p">
+        Sorry, you don't belong to any groups. <br/>
+        <Stack className="findGroupsButton" direction="row" spacing={2}>
+            <Link to='/search'><Button variant="contained" color="secondary">Search  Groups</Button></Link></Stack>
+        </Typography></div>
+    }
+
+ //if the add group button is clicked
+    //================================
+    let addGroupArea =
+        <Stack className="AddButton" direction="row" spacing={2}>
+            <Button onClick={onAddClick} variant="contained"><AddIcon/> Create Group</Button></Stack>
+    if (createGroupClicked) {
+        return (
+            addGroupArea = <CreateGroup
+                handleClose={onAddClick}
+                open={createGroupClicked}
+                newGroupId={newGroupId}
+                onNoThanksCLicked={onNoThanksCLicked}
+                CreateNewGroup={CreateNewGroup}
+                createGroupClicked={createGroupClicked}
+                setCreateGroupClicked={setCreateGroupClicked}
+                user={user}
+
+            />
+        )
+    }
+
 
   return (
     <div>
@@ -217,33 +228,31 @@ export default function Dashboard(props) {
         MY PROFILE TITLE
         IMAGE OF PROFILE PIC, NAME, USER NAME, EDIT PROFILE BUTTON AND VIEW PROJECTS BUTTON */}
 
+      
       {profileContent}
 
-      {/* GROUPS AREA  */}
-      <Typography
-        className="userGroupsText"
-        variant="h5"
-        marginTop="10px"
-        marginLeft="10px"
-      >
-        You belong to {userGroups.length} groups.
-      </Typography>
+    {/* GROUPS AREA  */}
+    <Typography className="userGroupsText"
+        variant="h5" 
+        marginTop="10px" 
+        marginLeft="10px">
+      You belong to {userGroups.length} groups.        
+    </Typography>
+ 
 
-      <div className="cardDiv">{theGroupCards}</div>
+      <div className="cardDiv">
+    {theGroupCards}
+      </div>
 
       <div className="sadLadyDiv">
-        <img
-          class="sadLady"
-          width="400"
-          src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"
-        />
-        <Typography className="homeType" variant="body1" component="p">
-          Haven't quite found what you're looking for? <br />
-        </Typography>
-        <Stack className="AddButton" direction="row" spacing={2}>
-          {addGroupArea}
-        </Stack>
-      </div>
+                <img class="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>
+                <Typography className="homeType" variant="body1" component="p">
+                        Haven't quite found  what you're looking for? <br/>
+                </Typography>
+                <Stack className="AddButton" direction="row" spacing={2}>
+                {addGroupArea}
+                </Stack>
+            </div>
     </div>
   );
 }
