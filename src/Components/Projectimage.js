@@ -28,7 +28,7 @@ export default function Phototest(props) {
     setImageUrl(res.secure_url);
 
     let res2 = await fetch(
-      `http://localhost:3005/projects/editphoto/${singleProject.id}`,
+      `${process.env.REACT_APP_SERVER_URL}/projects/editphoto/${singleProject.id}`,
       {
         method: "POST",
         mode: "cors",

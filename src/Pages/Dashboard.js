@@ -107,7 +107,7 @@ function onNoThanksCLicked(event) {
     console.log("I am hitting get all groups function")
     let theid = user.id
     console.log(theid)
-    let res = await fetch(`http://localhost:3005/groups/findmembers/${theid}`)
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findmembers/${theid}`)
     res = await res.json();
     setUserGroups(res);
 }
@@ -120,7 +120,7 @@ useEffect(() => {
 
 async function CreateNewGroup(newGroup) {
   console.log("I am hitting the create group function")
-  let res = await fetch("http://localhost:3005/groups/creategroup",
+  let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/creategroup`,
       {
           method: 'POST',
           mode: 'cors',
@@ -144,7 +144,7 @@ async function CreateNewGroup(newGroup) {
 
     async function LeaveGroup(id) {
       console.log("I am hitting LeaveGroup function on Group Page" + id)
-      let res = await fetch(`http://localhost:3005/groups/deletegroupmember/${id}`);
+      let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroupmember/${id}`);
       res = await res.json();
       console.log(res);
       GetAllUserGroups()

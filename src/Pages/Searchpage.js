@@ -31,7 +31,7 @@ export default function Searchpage(props) {
 
     async function SearchGroupsByCity(citySearched) {
         console.log("hitting SearchGroupsByCityfunction");
-        let res = await fetch(`http://localhost:3005/groups/findbycity/${citySearched}`)
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findbycity/${citySearched}`)
         res = await res.json();
         setCityGroups(res.results);
         console.log(res)
@@ -66,7 +66,7 @@ export default function Searchpage(props) {
 //++++++++++++++++++++++++++++++++
     async function JoinGroup(newMember) {
         console.log("I am hitting the join group function")
-        let res = await fetch("http://localhost:3005/groups/addgroupmember",
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
             {
                 method: 'POST',
                 mode: 'cors',

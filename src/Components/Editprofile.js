@@ -18,7 +18,7 @@ export default function Editprofile(props) {
   });
 
   async function EditUserFunction(editUserInfo) {
-    let res = await fetch(`http://localhost:3005/users/edit/${user.id}`, {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/edit/${user.id}`, {
       method: "POST",
       mode: "cors",
       headers: {

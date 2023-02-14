@@ -26,7 +26,7 @@ export default function Loginmodal(props) {
   }
 
   async function Login(loginInfo) {
-    let res = await fetch(`http://localhost:3005/users/login`, {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/login`, {
       method: "POST",
       mode: "cors",
       headers: {

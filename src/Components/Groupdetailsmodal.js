@@ -58,7 +58,7 @@ export default function GroupDetailsModal(props){
 
 async function JoinGroup(newMember){
     console.log("I am hitting the join group function")
-    let res = await fetch("http://localhost:3005/groups/addgroupmember",
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
     {
             method: 'POST',
             mode:'cors',

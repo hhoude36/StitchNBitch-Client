@@ -32,7 +32,7 @@ export default function Registermodal(props) {
 
   async function AddUserFunction(userInfo) {
     //hiting back end with local login form state
-    let res = await fetch(`http://localhost:3005/users/register`, {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/register`, {
       //posting that information to the back end using form info
       method: "POST",
       mode: "cors",

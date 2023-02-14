@@ -84,8 +84,8 @@ export default function CreateGroup(props) {
         setImageUrl(res.secure_url);
         console.log(res.secure_url);
         let id = newGroupId;
-        let res2 = await fetch(`http://localhost:3005/groups/addphoto/${id}`,
-            {
+        let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addphoto/${id}`,
+            {   
                 method: 'POST',
                 mode: 'cors',
                 headers: {

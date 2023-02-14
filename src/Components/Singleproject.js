@@ -32,7 +32,7 @@ export default function Singleproject(props) {
   async function EditProject(editProject) {
     console.log(editProject);
     let id = singleProject.id;
-    let res = await fetch(`http://localhost:3005/projects/editproject/${id}`, {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/projects/editproject/${id}`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -47,7 +47,7 @@ export default function Singleproject(props) {
 
   // =================Delete Project Function
   async function DeleteProject(id) {
-    let res = await fetch(`http://localhost:3005/projects/deleteproject/${id}`);
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/projects/deleteproject/${id}`);
     res = await res.json();
     await GetAllProjects();
   }
