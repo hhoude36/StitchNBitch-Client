@@ -43,8 +43,6 @@ export default function GroupDetailsModal(props){
     function OnLeaveClick(){
         console.log("leave group clicked");
         LeaveGroup(singleGroup.id);
-        GetAllUserGroups()
-        
     }
 
     function ViewLessDetails(e){

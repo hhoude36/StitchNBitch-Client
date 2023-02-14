@@ -104,11 +104,12 @@ function onNoThanksCLicked(event) {
 //GET ALL USERS FUNCTION
   //=======================
   async function GetAllUserGroups() {
-    console.log("I am hitting get all groups function")
+    console.log("I am hitting get all user groups function")
     let theid = user.id
     console.log(theid)
     let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findmembers/${theid}`)
     res = await res.json();
+    console.log(res, "data from get all user groups")
     setUserGroups(res);
 }
 
@@ -133,7 +134,7 @@ async function CreateNewGroup(newGroup) {
   res = await res.json();
   console.log(res.results.id)
   setnewGroupId(res.results.id)
-  GetAllGroups()
+  GetAllUserGroups()
 }
 
 
@@ -153,11 +154,13 @@ async function CreateNewGroup(newGroup) {
 
    //LOOPING THROUGH FOR THE CARDS
     //================================
-function GetAllGroups(){
-  useEffect(() => {
-    GetAllUserGroups();
-}, []);
-}
+// function GetAllGroups(){
+//   console.log("Get All Groups is firing")
+//   useEffect(() => {
+//     console.log("use effect inside of get all groups is firing")
+//     GetAllUserGroups();
+// }, []);
+// }
 
 
 
