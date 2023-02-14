@@ -1,0 +1,61 @@
+
+
+.searchDiv{
+    display:flex;
+    align-items: center;
+    padding: 20px;
+    justify-content: center;
+}
+
+.sadlady{
+    margin-bottom: 0px;
+    padding-bottom: 0px;
+}
+
+.sadLadyDiv{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.detailsButtons{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+    padding: 8px;
+}
+
+.nameAndPlaceInModal{
+    display: flex;
+    flex-direction: row;
+
+}
+
+.DialogTitle{
+    text-align: center;
+}
+
+
+
+.modalTitleDiv{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px;
+    margin: 4px;
+}
+
+.keyInfo{
+    background-color: #ffff81;
+    padding: 10px;
+    margin: 8px;
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.userGroupsText{
+    padding-top:20px;
+}
