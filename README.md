@@ -1,70 +1,68 @@
-# Getting Started with Create React App
+<p align="center">
+  <a href="https://stitchnbitch.onrender.com/" rel="" target="_blank"><img width="150" src="https://res.cloudinary.com/dexffe7jc/image/upload/v1675447587/kp0ykq0joo93crqx0xha.jpg" alt="Stitch 'N Bitch"></a></p>
+</p>
+<h1 align="center">Stitch 'N Bitch</h1>
+<h2 align="center">A Home for Crafters</h2>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Crafters can find and build groups that meet regularly to quilt, knit, crochet, needlepoint, sew, and do other handicrafts while tracking their own and others’ progress on current and past projects. With Stitch 'N Bitch it's never been easier to build community around the activities you love.
 
-## Available Scripts
+> Build Status:
+Deployed@**[Stitch 'N Bitch](https://stitchnbitch.onrender.com/)**
 
-In the project directory, you can run:
+## Inspiration
 
-### `npm start`
+Historically, women have used these gatherings as a way to gather and build community. During the 80s and 90s women in the Feminist, Punk, and DIY circles brought these craft circles back to life, using them as a place to reclaim women's work and build political movements. Ever since, the Stitch 'N Bitch has remained alive and well but there has never been a platform dedicated entirely to them. 
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Quick Peek
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+<img src="https://res.cloudinary.com/dexffe7jc/image/upload/v1676647788/stitch_z5l9os.gif" alt="View of Website"/>
 
-### `npm test`
+## Features
+- Bcrypt Encoding
+- User Log-in, Sign-up and Log-out
+- Upload ability for User Profile, Group, and Project pictures
+- Ability to search for Groups by location
+- Add, Edit and Delete Projects
+- Join, Leave and Create Groups
+- Edit Profile Information
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-### `npm run build`
+## Installation
+To install Stitch 'N Bitch use *npm install*:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Front-End:
+**[Repository](https://github.com/hhoude36/StitchNBitch-Client)**
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+Back-End:
+**[Repository](https://github.com/hhoude36/StitchNBitch-Server)**
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Technical Framework Usage:
+- ElephantSQL
+- Express
+- React.js
+- Node.js
+- Sequelize
 
-### `npm run eject`
+## Code Framework Style
+- Material UI
+- Custom Styled Components
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+## Data References
+Custom Secured Data usage.
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Usage
+Sign-in and/or Sign-Up
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+  <h4>Components for each setup:</h4>
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+        Home Landing     | Team User
+       ------------------------- ------------------ ------------
+        Admin HomePage          | Sign-in Button   | User HomePage
+        AdminProfile            | Sign-up Button   | UserProfile
+        GetCardInfo             | Log-out Button   | InitialForm
+                       | Picture Carousel |
+         Documents        |
+          Lists            |
+        
 
-## Learn More
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
