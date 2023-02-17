@@ -13,19 +13,18 @@ Deployed@**[Stitch 'N Bitch](https://stitchnbitch.onrender.com/)**
 
 Historically, women have used these gatherings as a way to gather and build community. During the 80s and 90s women in the Feminist, Punk, and DIY circles brought these craft circles back to life, using them as a place to reclaim women's work and build political movements. Ever since, the Stitch 'N Bitch has remained alive and well but there has never been a platform dedicated entirely to them. 
 
-## Quick Peek
+## Quick Preview
 
 <img src="https://res.cloudinary.com/dexffe7jc/image/upload/v1676647788/stitch_z5l9os.gif" alt="View of Website"/>
 
 ## Features
 - Bcrypt Encoding
 - User Log-in, Sign-up and Log-out
-- Upload ability for User Profile, Group, and Project pictures
+- Upload ability for User Profile, Group, and Project photos
 - Ability to search for Groups by location
 - Add, Edit and Delete Projects
 - Join, Leave and Create Groups
 - Edit Profile Information
-
 
 ## Installation
 To install Stitch 'N Bitch use *npm install*:
@@ -48,21 +47,23 @@ Back-End:
 - Custom Styled Components
 
 ## Data References
-Custom Secured Data usage.
+Custom Secured Data Usage
 
 ## Usage
-Sign-in and/or Sign-Up
+Sign-In or Sign-Up
 
   <h4>Components for each setup:</h4>
 
-        Home Landing     | Team User
-       ------------------------- ------------------ ------------
-        Admin HomePage          | Sign-in Button   | User HomePage
-        AdminProfile            | Sign-up Button   | UserProfile
-        GetCardInfo             | Log-out Button   | InitialForm
-                       | Picture Carousel |
-         Documents        |
-          Lists            |
+        Home Landing     | User Dashboard         | Groups Page         | Profile Page
+       --------------------------------------------------------------------------------
+        Sign-In Button   | Preview Profile        | Search Bar          | View Profile
+        Sign-Up Button   | Edit Profile Button    | View Local Groups   | Edit Profile
+        Mobile Preview   | View Projects Button   | Create Groups       | Update Profile Photo
+                         | View Joined Groups     | Add Group Photo     | View Current Projects
+                         | Create Goups Button    | Join Groups         | Add Project
+                         | Search Groups Button   | Leave Groups        | Add Project Photo
+                         |                        | Add Group Photo     | Edit Project
+                         |                        |                     | Delete Project
         
 
 
