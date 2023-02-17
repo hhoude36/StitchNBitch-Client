@@ -46,6 +46,15 @@ Back-End:
 - Material UI
 - Custom Styled Components
 
+## Design Research & Inspiration
+The design aims to bridge across generations. While these traditional handicrafts are often associated with older crowds, we also wanted to keep in mind the resurgence among young, hip crafters. We referenced punk/DIY/feminist aesthetics while choosing our fonts and color scheme, while also ensuring the site was desktop friendly and fully mobile.
+
+Below are some of the materials we referenced.
+<img src="https://res.cloudinary.com/dqfviar71/image/upload/v1676659914/designgif_jqimgj.gif" alt="Design inspiration images"/>
+
+Mobile view 
+<img  width=200px; src="https://res.cloudinary.com/dqfviar71/image/upload/v1675651310/Deshboard_ir0wqy.png"/>
+
 ## Data References
 Custom Secured Data Usage
 
@@ -95,7 +104,6 @@ Sign-In or Sign-Up
 - Git and GitHub Commits, Merges and Branching.
 - Cloudinary image storage.
 - Used ClickUp as our guide for completing tasks.
-
 
 ## Code Example Extraction
 Uploading images to groups
