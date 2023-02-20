@@ -64,8 +64,6 @@ export default function Registermodal(props) {
   let PasswordInfo;
   let PasswordColor = "primary";
 
-  console.log(userInfo.password);
-  console.log(PasswordInfo);
 
   if (userInfo.password.length > 0) {
     let theWarnings = [];
