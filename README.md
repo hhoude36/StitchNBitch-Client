@@ -66,7 +66,7 @@ Sign-In or Sign-Up
         Sign-Up Button   | Edit Profile Button    | View Local Groups   | Edit Profile
         Mobile Preview   | View Projects Button   | Create Groups       | Update Profile Photo
                          | View Joined Groups     | Add Group Photo     | View Current Projects
-                         | Create Groups Button    | Join Groups         | Add Project
+                         | Create Groups Button   | Join Groups         | Add Project
                          | Search Groups Button   | Leave Groups        | Add Project Photo
                          |                        | Add Group Photo     | Edit Project
                          |                        |                     | Delete Project
