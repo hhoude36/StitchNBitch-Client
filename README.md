@@ -89,13 +89,13 @@ Sign-In or Sign-Up
 ## Triumphs
 - The ability to upload and update a Profile, Group, or Project image.
 - Successfully communication between team members to ensure smooth merges.
-- Applied the knowledge form the sixteen(16)-week DigitalCrafts Bootcamp.
+- Applied the knowledge from the sixteen(16)-week DigitalCrafts Bootcamp.
 - Built the back end with our stretch goals in mind so we can continue to add functionalities. 
 
 ## Capstone Project Credits Go To The Following Builders
  
-- Full-Stack Developer:[Betty-Lee Carter](https://github.com/hhoude36) Ideation, Front-End, Back-End, Deployment, ReadMe-files. Responsible for the Profile and Project functionalities. 
-- Full-Stack Developer:[Heather Houde](https://github.com/deliflows) Back-End, Ideation, Front-End, Design-Styles Back-End. Responsible for the Group functionalities. 
+- Full-Stack Developer:[Betty Lee Carter](https://github.com/deliflows) Ideation, Front-End, Back-End, Deployment, ReadMe-files. Responsible for the Profile and Project functionalities. 
+- Full-Stack Developer:[Heather Houde](https://github.com/hhoude36) Ideation, Front-End, Back-End, Design-Styles, Deployment. Responsible for the Group functionalities. 
 
 ## Miscellaneous 
 - Git and GitHub Commits, Merges and Branching.
