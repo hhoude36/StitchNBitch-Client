@@ -20,8 +20,9 @@ import './GroupCards.css';
 
 export default function Dashboard(props) {
   const [createGroupClicked, setCreateGroupClicked] = useState(false);
-  const [newGroupId, setnewGroupId] = useState("")
+  const [newGroupId, setnewGroupId] = useState("");
   const [userGroups, setUserGroups] = useState([]);
+
 
   
   const { user, setUser, isLoggedIn, setIsLoggedIn } = props;
@@ -106,10 +107,8 @@ function onNoThanksCLicked(event) {
   async function GetAllUserGroups() {
     console.log("I am hitting get all user groups function")
     let theid = user.id
-    console.log(theid)
     let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findmembers/${theid}`)
     res = await res.json();
-    console.log(res, "data from get all user groups")
     setUserGroups(res);
 }
 
@@ -119,7 +118,7 @@ useEffect(() => {
 }, []);
 
 
-async function CreateNewGroup(newGroup) {
+async function CreateNewGroup(newGroup, newMember) {
   console.log("I am hitting the create group function")
   let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/creategroup`,
       {
@@ -131,9 +130,24 @@ async function CreateNewGroup(newGroup) {
           },
           body: JSON.stringify(newGroup)
       });
-  res = await res.json();
-  console.log(res.results.id)
-  setnewGroupId(res.results.id)
+      res = await res.json();
+      setnewGroupId(res.results.id)
+      console.log(res)
+      console.log(newMember)
+
+  let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
+  {
+              method: 'POST',
+              mode:'cors',
+              headers: {
+                  'Accept': 'application/json',
+                  'Content-Type': 'application/json'
+                  },
+              body: JSON.stringify(newMember) 
+          });
+          res2 = await res.json();
+          console.log(res2)
+
   GetAllUserGroups()
 }
 

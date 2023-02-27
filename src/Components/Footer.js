@@ -11,7 +11,7 @@ export default function Footer(){
     return(
         <div className="footer">
             <Typography className="text" variant="body1" component="p">
-            <p>Ⓒ Betty-Lee Carter and Heather Houde</p>
+            Ⓒ Betty-Lee Carter and Heather Houde
             </Typography>
         </div>
     )

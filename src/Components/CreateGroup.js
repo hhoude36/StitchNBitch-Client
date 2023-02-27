@@ -34,6 +34,13 @@ export default function CreateGroup(props) {
     const [imageUrl, setImageUrl] = useState("")
     const [addPhotoClicked, setAddPhotoClicked] = useState(false);
 
+
+    const [newMember, setNewMember] = useState({
+        userid: user.id,
+        groupid: newGroupId,
+        status: "active"
+    })
+
     const [newGroup, setNewGroup] = useState({
         name: "",
         description: "",
@@ -50,9 +57,10 @@ export default function CreateGroup(props) {
     function onInputChange(event) {
         setNewGroup({ ...newGroup, [event.target.name]: event.target.value });
     }
+
     function onFormSubmit(event) {
         event.preventDefault();
-        CreateNewGroup(newGroup);
+        CreateNewGroup(newGroup, newMember);
         setAddPhotoClicked(!addPhotoClicked)
     }
 
