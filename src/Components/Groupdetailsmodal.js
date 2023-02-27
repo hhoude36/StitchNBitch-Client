@@ -42,6 +42,7 @@ export default function GroupDetailsModal(props){
 
     function OnLeaveClick(){
         console.log("leave group clicked");
+        setViewDetailsClicked(!open)
         LeaveGroup(singleGroup.id);
     }
 
@@ -50,25 +51,6 @@ export default function GroupDetailsModal(props){
         console.log("view less details clicked")
         onViewButtonClicked();
     }
-
-//JOIN GROUP
-//==============================
-
-async function JoinGroup(newMember){
-    console.log("I am hitting the join group function")
-    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
-    {
-            method: 'POST',
-            mode:'cors',
-            headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-                },
-            body: JSON.stringify(newMember) 
-        });
-        res = await res.json();
-}
-
 
 
     return(
@@ -139,4 +121,3 @@ async function JoinGroup(newMember){
 
     }
         
-
