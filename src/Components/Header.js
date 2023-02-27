@@ -175,7 +175,6 @@ export default function Header(props) {
                 onClose={handleCloseUserMenu}
               >
                 <MenuItem onClick={handleCloseUserMenu}>
-
                 </MenuItem>
               </Menu> */}
               <Link to="/" style={{textDecoration: "none", color: "black"}}>
