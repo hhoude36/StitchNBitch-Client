@@ -6,10 +6,10 @@ import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
-import './GroupCard.css';
+import AdminGroupDetails from './AdminGroupDetails';
 
-export default function GroupCard(props) {
-    const { user, setUser, isLoggedIn, setIsLoggedIn, singleGroup, LeaveGroup } = props
+export default function AdminCards(props) {
+    const { user, setUser, isLoggedIn, setIsLoggedIn, singleAdminGroup, adminGroups, DeleteGroup } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
 
     function onViewButtonClicked() {
@@ -22,17 +22,22 @@ export default function GroupCard(props) {
     size="small" color="primary">Learn More</Button>
     if (viewDetailsClicked) {
         viewDetailsArea =
-            <div>
-                <Groupdetailsmodal  
-                LeaveGroup={LeaveGroup} 
-                user={user} 
-                isLoggedIn={isLoggedIn} 
-                singleGroup={singleGroup} 
-                open={viewDetailsClicked}
-                setViewDetailsClicked={setViewDetailsClicked}
-                onViewButtonClicked={onViewButtonClicked} />
-            </div>
+        <div>
+        <AdminGroupDetails 
+        DeleteGroup={DeleteGroup}
+        user={user} 
+        isLoggedIn={isLoggedIn} 
+        singleAdminGroup={singleAdminGroup} 
+        open={viewDetailsClicked}
+        setViewDetailsClicked={setViewDetailsClicked}
+        onViewButtonClicked={onViewButtonClicked} />
+        </div>
     }
+
+
+
+
+
 
 
     return (
@@ -42,15 +47,15 @@ export default function GroupCard(props) {
                     <CardMedia
                         component="img"
                         height="140"
-                        image= {singleGroup.group.imagename}
+                        image= {singleAdminGroup.imagename}
                         alt="group image"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            <p>{singleGroup.group.name}</p>
+                            <p>{singleAdminGroup.name}</p>
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {singleGroup.group.city}, {singleGroup.group.state}
+                            {singleAdminGroup.city}, {singleAdminGroup.state}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

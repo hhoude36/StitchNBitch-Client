@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import CreateGroup from '../Components/CreateGroup'
-
+import AdminCards from "../Components/AdminCards";
 import './GroupCards.css';
 
 
@@ -22,6 +22,7 @@ export default function Dashboard(props) {
   const [createGroupClicked, setCreateGroupClicked] = useState(false);
   const [newGroupId, setnewGroupId] = useState("");
   const [userGroups, setUserGroups] = useState([]);
+  const [adminGroups, setAdminGroups] = useState([]);
 
 
   
@@ -102,6 +103,25 @@ function onNoThanksCLicked(event) {
   GetAllUserGroups();
 }
 
+//GET ALL ADMIN GROUPS FUNCTION
+  //=======================
+  async function GetAllAdminGroups() {
+    console.log("I am hitting get all ADMIN groups function")
+    let theid = user.id
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/admin/${theid}`)
+    console.log(res)
+    res = await res.json();
+    setAdminGroups(res);
+}
+
+//DELETE GROUP (ADMIN)
+  //=======================
+  async function DeleteGroup(id) {
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroup/${id}`);
+    res = await res.json();
+    await GetAllAdminGroups();
+  }
+
 //GET ALL USERS FUNCTION
   //=======================
   async function GetAllUserGroups() {
@@ -117,6 +137,9 @@ useEffect(() => {
     GetAllUserGroups();
 }, []);
 
+useEffect(() => {
+  GetAllAdminGroups();
+}, []);
 
 async function CreateNewGroup(newGroup, newMember) {
   console.log("I am hitting the create group function")
@@ -132,8 +155,7 @@ async function CreateNewGroup(newGroup, newMember) {
       });
       res = await res.json();
       setnewGroupId(res.results.id)
-      console.log(res)
-      console.log(newMember)
+     
 
   let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
   {
@@ -152,8 +174,6 @@ async function CreateNewGroup(newGroup, newMember) {
 }
 
 
-
-
     //LEAVE GROUP
     //===========================================
 
@@ -166,20 +186,45 @@ async function CreateNewGroup(newGroup, newMember) {
   }
 
 
-   //LOOPING THROUGH FOR THE CARDS
-    //================================
-// function GetAllGroups(){
-//   console.log("Get All Groups is firing")
-//   useEffect(() => {
-//     console.log("use effect inside of get all groups is firing")
-//     GetAllUserGroups();
-// }, []);
-// }
+
+    //ADMIN GROUPS
+    //===========================================
+  let theAdminGroupCards;
+  if (adminGroups.length > 0) {
+      theAdminGroupCards = adminGroups.map(function (singleAdminGroup) {
+          return (
+      <div>
+              <AdminCards
+              DeleteGroup={DeleteGroup}
+              key={user.id}
+              GetAllUserGroups={GetAllUserGroups} 
+              user={user} 
+              setUser={setUser} 
+              isLoggedIn={isLoggedIn} 
+              setIsLoggedIn={setIsLoggedIn} 
+              singleAdminGroup={singleAdminGroup}
+              adminGroups={adminGroups}
+              />
+          </div>
+
+         
+          )
+          console.log(singleAdminGroup)
+      })
+  }
+  //if there are none, send a message. 
+  //================================
+  else {
+      theAdminGroupCards =    <div className="noGroupsDiv"> <Typography className="homeType" variant="h5" component="p">
+      You don't admin any groups. <br/>
+      <Stack className="findGroupsButton" direction="row" spacing={2}>
+          <Link to='/search'><Button variant="contained" color="secondary">Search  Groups</Button></Link></Stack>
+      </Typography></div>
+  }
 
 
-
-
-
+//LOOPING THROUGH GROUP CARDS
+//==============================================
     let theGroupCards;
     if (userGroups.length > 0) {
         theGroupCards = userGroups.map(function (singleGroup) {
@@ -246,6 +291,18 @@ async function CreateNewGroup(newGroup, newMember) {
       {profileContent}
 
     {/* GROUPS AREA  */}
+   
+      <Typography className="userGroupsText"
+        variant="h5" 
+        marginTop="10px" 
+        marginLeft="10px">
+      You are the admin for {adminGroups.length} groups.        
+    </Typography>
+
+      <div className="cardDiv">
+    {theAdminGroupCards}
+      </div>
+
     <Typography className="userGroupsText"
         variant="h5" 
         marginTop="10px" 
@@ -257,6 +314,8 @@ async function CreateNewGroup(newGroup, newMember) {
       <div className="cardDiv">
     {theGroupCards}
       </div>
+
+     
 
       <div className="sadLadyDiv">
                 <img class="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>

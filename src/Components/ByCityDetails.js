@@ -17,6 +17,9 @@ export default function ByCityDetails(props) {
         LeaveGroup,
         open,
         OnJoinClick } = props;
+    
+    const [joinMeClicked, setJoinMeClicked] = useState(false);
+
 
     function ViewLessDetails(e) {
         //  e.preventDefault();
@@ -28,11 +31,32 @@ export default function ByCityDetails(props) {
         e.preventDefault();
         console.log("leave group clicked");
         OnJoinClick(singleGroup.id);
+        setJoinMeClicked(!joinMeClicked);
     }
     // function OnLeaveClick(){
     //     console.log("leave group clicked");
     //     LeaveGroup(singleGroup.id)
     // }
+let detailsButtons = 
+<div className="detailsButtons">
+<Stack direction="row" spacing={2}>
+<Button onClick={JoinMe} variant="contained">Join this group</Button></Stack>
+<Button onClick={ViewLessDetails}>Less Information</Button>
+</div>
+
+if(joinMeClicked){
+ detailsButtons=
+ <div className="detailsButtons">
+<div style={{ color:"green"}}>
+ <Stack direction="row" spacing={2}>
+ <Typography variant="body1" component="p" >
+        ✓ Group Joined
+ </Typography></Stack>
+ </div>
+ <Button onClick={ViewLessDetails}>Less Information</Button>
+</div>   
+}
+
 
     return (
 
@@ -91,31 +115,9 @@ export default function ByCityDetails(props) {
 
                     </div>
                 </DialogContent>
-                <div className="detailsButtons">
-                    <Stack direction="row" spacing={2}>
-                        <Button onClick={JoinMe} variant="contained">Join this group</Button></Stack>
-                    <Button onClick={ViewLessDetails}>Less Information</Button>
-                </div>
-            </Dialog>
-        </div>
-
-        // <div>
-        //     <Dialog onClose={viewDetailsClicked} open={open}>
-        //         <DialogTitle>{singleGroup.name}</DialogTitle>
-        //         <DialogContent>
-        //             <DialogContentText>
-        //                 {singleGroup.city},  {singleGroup.state}
-        //             </DialogContentText>
-        //             <DialogContentText>
-        //                 {singleGroup.meetingday}
-        //             </DialogContentText>
-        //             <DialogContentText>
-        //                {singleGroup.meetingday}
-        //             </DialogContentText>
-        //         </DialogContent>
-        //         <button onClick={JoinMe}>Join</button>
-        //         <button onClick={ViewLessDetails}>Less Information</button>
-        //       </Dialog>
+               {detailsButtons}
+                </Dialog>
+            </div>
 
         )
 }
