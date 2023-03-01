@@ -120,7 +120,9 @@ function onNoThanksCLicked(event) {
     let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroup/${id}`);
     res = await res.json();
     await GetAllAdminGroups();
+    await GetAllUserGroups();
   }
+
 
 //GET ALL USERS FUNCTION
   //=======================
@@ -132,14 +134,36 @@ function onNoThanksCLicked(event) {
     setUserGroups(res);
 }
 
+  //LEAVE GROUP
+    //===========================================
 
-useEffect(() => {
-    GetAllUserGroups();
-}, []);
+    async function LeaveGroup(id) {
+      console.log("I am hitting LeaveGroup function on Group Page" + id)
+      let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroupmember/${id}`);
+      res = await res.json();
+      console.log(res);
+      GetAllUserGroups()
+  }
+  //EDIT GROUP (ADMIN)
+  //========================================
+  async function EditGroup(editGroupInfo, id) {
+    console.log("I am hitting the edit group function")
+    let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/editgroup/${id}`,
+        {
+            method: 'POST',
+            mode: 'cors',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(editGroupInfo)
+        });
+        res = await res.json();
+        setnewGroupId(res.results.id)
+      }
 
-useEffect(() => {
-  GetAllAdminGroups();
-}, []);
+//CREATE NEW GROUP 
+//====================
 
 async function CreateNewGroup(newGroup, newMember) {
   console.log("I am hitting the create group function")
@@ -173,19 +197,16 @@ async function CreateNewGroup(newGroup, newMember) {
   GetAllUserGroups()
 }
 
+   //USE EFFECTS
+   //==========================================   
 
-    //LEAVE GROUP
-    //===========================================
+   useEffect(() => {
+    GetAllUserGroups();
+}, []);
 
-    async function LeaveGroup(id) {
-      console.log("I am hitting LeaveGroup function on Group Page" + id)
-      let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroupmember/${id}`);
-      res = await res.json();
-      console.log(res);
-      GetAllUserGroups()
-  }
-
-
+useEffect(() => {
+  GetAllAdminGroups();
+}, []);
 
     //ADMIN GROUPS
     //===========================================
@@ -195,6 +216,7 @@ async function CreateNewGroup(newGroup, newMember) {
           return (
       <div>
               <AdminCards
+              EditGroup={EditGroup}
               DeleteGroup={DeleteGroup}
               key={user.id}
               GetAllUserGroups={GetAllUserGroups} 
@@ -215,11 +237,7 @@ async function CreateNewGroup(newGroup, newMember) {
   //if there are none, send a message. 
   //================================
   else {
-      theAdminGroupCards =    <div className="noGroupsDiv"> <Typography className="homeType" variant="h5" component="p">
-      You don't admin any groups. <br/>
-      <Stack className="findGroupsButton" direction="row" spacing={2}>
-          <Link to='/search'><Button variant="contained" color="secondary">Search  Groups</Button></Link></Stack>
-      </Typography></div>
+      theAdminGroupCards =    ""
   }
 
 

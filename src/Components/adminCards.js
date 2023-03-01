@@ -9,7 +9,7 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import AdminGroupDetails from './AdminGroupDetails';
 
 export default function AdminCards(props) {
-    const { user, setUser, isLoggedIn, setIsLoggedIn, singleAdminGroup, adminGroups, DeleteGroup } = props
+    const { user, setUser, isLoggedIn, setIsLoggedIn, singleAdminGroup, adminGroups, DeleteGroup, EditGroup } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
 
     function onViewButtonClicked() {
@@ -24,6 +24,7 @@ export default function AdminCards(props) {
         viewDetailsArea =
         <div>
         <AdminGroupDetails 
+        EditGroup={EditGroup}
         DeleteGroup={DeleteGroup}
         user={user} 
         isLoggedIn={isLoggedIn} 
