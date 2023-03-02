@@ -109,7 +109,6 @@ function onNoThanksCLicked(event) {
     console.log("I am hitting get all ADMIN groups function")
     let theid = user.id
     let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/admin/${theid}`)
-    console.log(res)
     res = await res.json();
     setAdminGroups(res);
 }
@@ -159,7 +158,8 @@ function onNoThanksCLicked(event) {
             body: JSON.stringify(editGroupInfo)
         });
         res = await res.json();
-        setnewGroupId(res.results.id)
+        GetAllAdminGroups()
+        //do I need to change state?
       }
 
 //CREATE NEW GROUP 
@@ -180,21 +180,21 @@ async function CreateNewGroup(newGroup, newMember) {
       res = await res.json();
       setnewGroupId(res.results.id)
      
+//why is this suddenly not working? 
+  // let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
+  // {
+  //             method: 'POST',
+  //             mode:'cors',
+  //             headers: {
+  //                 'Accept': 'application/json',
+  //                 'Content-Type': 'application/json'
+  //                 },
+  //             body: JSON.stringify(newMember) 
+  //         });
+  //         res2 = await res.json();
+  //         console.log(res2)
 
-  let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
-  {
-              method: 'POST',
-              mode:'cors',
-              headers: {
-                  'Accept': 'application/json',
-                  'Content-Type': 'application/json'
-                  },
-              body: JSON.stringify(newMember) 
-          });
-          res2 = await res.json();
-          console.log(res2)
-
-  GetAllUserGroups()
+  GetAllAdminGroups()
 }
 
    //USE EFFECTS
