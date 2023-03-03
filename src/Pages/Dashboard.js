@@ -19,14 +19,13 @@ import './GroupCards.css';
 
 
 export default function Dashboard(props) {
+  const { user, setUser, isLoggedIn, setIsLoggedIn } = props;
   const [createGroupClicked, setCreateGroupClicked] = useState(false);
   const [newGroupId, setnewGroupId] = useState("");
   const [userGroups, setUserGroups] = useState([]);
   const [adminGroups, setAdminGroups] = useState([]);
-
-
   
-  const { user, setUser, isLoggedIn, setIsLoggedIn } = props;
+  
 
   const navigate = useNavigate();
   useEffect(() => {
@@ -118,8 +117,8 @@ function onNoThanksCLicked(event) {
   async function DeleteGroup(id) {
     let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroup/${id}`);
     res = await res.json();
-    await GetAllAdminGroups();
-    await GetAllUserGroups();
+     GetAllAdminGroups();
+     GetAllUserGroups();
   }
 
 
@@ -162,6 +161,25 @@ function onNoThanksCLicked(event) {
         //do I need to change state?
       }
 
+//EDIT GROUP PHOTO (ADMIN)
+  //========================================
+  // async function EditGroupPhoto(editGroupPhoto, id) {
+  //   console.log("I am hitting the edit group photo function")
+  //   let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/editphoto/${id}`,
+  //       {
+  //           method: 'POST',
+  //           mode: 'cors',
+  //           headers: {
+  //               'Accept': 'application/json',
+  //               'Content-Type': 'application/json'
+  //           },
+  //           body: JSON.stringify(editGroupPhoto)
+  //       });
+  //       res = await res.json();
+  //       GetAllAdminGroups()
+  //       //do I need to change state?
+  //     }
+
 //CREATE NEW GROUP 
 //====================
 
@@ -179,20 +197,7 @@ async function CreateNewGroup(newGroup, newMember) {
       });
       res = await res.json();
       setnewGroupId(res.results.id)
-     
-//why is this suddenly not working? 
-  // let res2 = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/addgroupmember`,
-  // {
-  //             method: 'POST',
-  //             mode:'cors',
-  //             headers: {
-  //                 'Accept': 'application/json',
-  //                 'Content-Type': 'application/json'
-  //                 },
-  //             body: JSON.stringify(newMember) 
-  //         });
-  //         res2 = await res.json();
-  //         console.log(res2)
+  
 
   GetAllAdminGroups()
 }
@@ -219,7 +224,7 @@ useEffect(() => {
               EditGroup={EditGroup}
               DeleteGroup={DeleteGroup}
               key={user.id}
-              GetAllUserGroups={GetAllUserGroups} 
+              GetAllAdminGroups={GetAllAdminGroups} 
               user={user} 
               setUser={setUser} 
               isLoggedIn={isLoggedIn} 

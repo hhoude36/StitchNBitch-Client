@@ -15,6 +15,8 @@ import MenuItem from '@mui/material/MenuItem';
 import Select, { SelectChangeEvent } from '@mui/material/Select';
 import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl'
+import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
+import EditGroupPhotoModal from './EditGroupPhotoModal';
 
 
 
@@ -40,7 +42,7 @@ export default function AdminGroupDetails(props){
         onViewButtonClicked,
         DeleteGroup,
         open,
-        GetAllUserGroups,
+        GetAllAdminGroups,
         // setOpen, 
         handleClose
             } = props;
@@ -57,6 +59,20 @@ const [editGroupInfo, setEditGroupInfo] = useState({
     groupinterestes: singleAdminGroup.groupinterestes,
     adminid: singleAdminGroup.adminid
 })
+const [updatePhotoClicked, setUpdatePhotoClicked] = useState(false)
+const [editGroupPhotoInfo, setEditGroupPhotoInfo] = useState({
+    imagename: singleAdminGroup.imagename,
+    id: singleAdminGroup.id
+})
+
+function changePhotoStatus(){
+    setEditGroupPhotoInfo(!editGroupPhotoInfo)
+}
+
+function OnEditPhotoClick(e){
+    e.preventDefault()
+    changePhotoStatus()
+}
 
 
 function onEditInputChange(event) {
@@ -86,6 +102,27 @@ function OnEditClick(){
         console.log("edit group clicked");
         setEditClicked(!editClicked)
     }
+//UPDATE PHOTO
+//=============================================
+
+  let editPhotoArea= <div>
+  <Button 
+  variant="container"
+  startIcon={<AddAPhotoIcon/>}
+  alignItems="baseline"
+  onClick={OnEditPhotoClick}
+  >Update
+  </Button>
+</div>
+
+if(editGroupPhotoInfo){
+    editPhotoArea=
+    <EditGroupPhotoModal
+    changePhotoStatus={changePhotoStatus}
+    singleAdminGroup={singleAdminGroup}
+    GetAllAdminGroups={GetAllAdminGroups}
+    />
+}
 
     //DETAILS AREA
     //=============================================
@@ -94,6 +131,8 @@ function OnEditClick(){
             <Dialog onClose={handleClose} open={open}>
                 <img src={singleAdminGroup.imagename}
                 height="300"/>
+                {editPhotoArea}
+            
                 <div className="modalTitleDiv">
                 <Typography className="modalName" variant="h4" component="p">
                 {singleAdminGroup.name}
@@ -147,8 +186,8 @@ function OnEditClick(){
                 </DialogContent>
                 <div className="detailsButtons">
                 <Stack direction="row" spacing={2}>
-                <Button onClick={OnDeleteClick} variant="contained">Delete Group</Button></Stack>
-                <Button onClick={OnEditClick} variant="contained">Edit Group</Button>
+                <Button onClick={OnDeleteClick} variant="contained"style={{ background:"red"}}>Delete Group</Button></Stack>
+                <Button onClick={OnEditClick} variant="contained"style={{ background:"yellow"}} >Edit Group</Button>
                 <Button onClick={ViewLessDetails}>Less Information</Button>
                 </div>
               </Dialog>

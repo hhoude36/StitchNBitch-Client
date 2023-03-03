@@ -22,7 +22,6 @@ import Profile from "./Profile";
 // import AdbIcon from '@mui/icons-material/Adb';
 
 export default function Header(props) {
-  console.log(props);
   const { isLoggedin, ChangeLogin } = props;
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -51,7 +50,6 @@ export default function Header(props) {
   };
 
   let loginArea;
-  console.log(isLoggedin);
   if (isLoggedin) {
     const pages = ["Dashboard", "Profile", "Search"];
     const settings = ["Edit Profile", "Logout"];
