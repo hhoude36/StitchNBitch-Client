@@ -9,21 +9,37 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import AdminGroupDetails from './AdminGroupDetails';
 
 export default function AdminCards(props) {
-    const { user, setUser, isLoggedIn, setIsLoggedIn, singleAdminGroup, adminGroups, DeleteGroup, EditGroup } = props
+    const { user, 
+        setUser, 
+        isLoggedIn, 
+        setIsLoggedIn, 
+        singleAdminGroup, 
+        adminGroups, 
+        DeleteGroup, 
+        EditGroup,
+        GetAllAdminGroups } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
+  
 
+
+    //BUTTONS CLICKED AREA
+    //=================================
     function onViewButtonClicked() {
         console.log("view details was clicked");
         setViewDetailsClicked(!viewDetailsClicked);
     }
 
 
+
+    //View Details area
+    //==========================================
     let viewDetailsArea= <Button onClick={onViewButtonClicked} 
     size="small" color="primary">Learn More</Button>
     if (viewDetailsClicked) {
         viewDetailsArea =
         <div>
         <AdminGroupDetails 
+        GetAllAdminGroups={GetAllAdminGroups}
         EditGroup={EditGroup}
         DeleteGroup={DeleteGroup}
         user={user} 
