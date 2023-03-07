@@ -28,6 +28,7 @@ export default function GroupCard(props) {
         setGroupUsers(res);
     }
 
+    //doesn't seem to update for each group
     async function GetGroupAdminImage(id){
         console.log("I am hitting get admin of group function")
         let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/getadmin/${id}`)
@@ -43,6 +44,7 @@ export default function GroupCard(props) {
         viewDetailsArea =
             <div>
                 <Groupdetailsmodal 
+                setGroupAdmin={setGroupAdmin}
                 groupAdmin={groupAdmin}
                 groupUsers={groupUsers}
                 GetUsersInGroup={GetUsersInGroup} 
