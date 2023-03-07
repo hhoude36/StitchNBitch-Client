@@ -17,6 +17,7 @@ import InputLabel from '@mui/material/InputLabel';
 import FormControl from '@mui/material/FormControl'
 import AddAPhotoIcon from '@mui/icons-material/AddAPhoto';
 import EditGroupPhotoModal from './EditGroupPhotoModal';
+import './GroupDetails.css';
 
 
 
@@ -35,6 +36,7 @@ const style = {
 
 export default function AdminGroupDetails(props){
     const {user, 
+        groupUsers,
         EditGroup,
         singleAdminGroup, 
         viewDetailsClicked, 
@@ -44,7 +46,8 @@ export default function AdminGroupDetails(props){
         open,
         GetAllAdminGroups,
         // setOpen, 
-        handleClose
+        handleClose,
+        GetUsersInGroup
             } = props;
 
 const [editClicked, setEditClicked] = useState(false);
@@ -102,6 +105,23 @@ function OnEditClick(){
         console.log("edit group clicked");
         setEditClicked(!editClicked)
     }
+
+ //GROUP USERS AREA
+//============================================================
+let groupUsersArea;
+if(groupUsers.length > 0){
+    groupUsersArea = groupUsers.map(function(singleGroupUser){
+        return(
+            <div className= "singleMemberInGroup">
+                <img width= "50" src={singleGroupUser.user.imagename} ></img>
+            </div>
+        )
+    })}
+
+else{
+    groupUsersArea="";
+}
+   
 //UPDATE PHOTO
 //=============================================
 
@@ -180,10 +200,22 @@ if(editGroupPhotoInfo){
                         {singleAdminGroup.description}
                         euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida<br/>euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida
                     </DialogContentText>
+
+                    <div className="groupMembersTitle">
+                    <Typography  variant="body1" component="p">
+                       This group has {groupUsers.length} active members. 
+                    </Typography>
+                <div className="groupUsersImages">
+                    {groupUsersArea}
+                </div>
+                </div>
                 </div>
               
                 </div>
                 </DialogContent>
+
+            
+
                 <div className="detailsButtons">
                 <Stack direction="row" spacing={2}>
                 <Button onClick={OnDeleteClick} variant="contained"style={{ background:"red"}}>Delete Group</Button></Stack>
@@ -304,67 +336,6 @@ if(editGroupPhotoInfo){
                 </DialogContent>
             </Dialog>
 
-
-            {/* <Dialog onClose={handleClose} open={open}>
-                <img src={singleAdminGroup.imagename}
-                height="300"/>
-                <div className="modalTitleDiv">
-                <Typography className="modalName" variant="h4" component="p">
-                {singleAdminGroup.name}
-                </Typography>
-
-                <Typography className="modalName" variant="body1" component="p">
-                {singleAdminGroup.city}, {singleAdminGroup.state}
-                </Typography>
-                </div>
-                <DialogContent>
-                
-                <div className="allModalInfo">
-                <div className="keyInfo">
-                   
-                    <DialogContentText >
-                    <Typography  variant="body1" component="p">
-                        Time
-                    </Typography>
-                       {singleAdminGroup.meetingtime}
-                    </DialogContentText>
-                    <DialogContentText>
-                    <Typography  variant="body1" component="p">
-                        Day
-                    </Typography>
-                     {singleAdminGroup.meetingday}
-                    </DialogContentText>
-                    
-                    <DialogContentText>
-                    <Typography  variant="body1" component="p">
-                        Location
-                    </Typography>
-                       {singleAdminGroup.meetinglocation}
-                    </DialogContentText>
-
-                    <DialogContentText>
-                    <Typography  variant="body1" component="p">
-                        Interests
-                    </Typography>
-                       {singleAdminGroup.groupinterestes}
-                    </DialogContentText>
-
-                </div>
-                <div className="modalDescription">
-                    <DialogContentText>
-                        {singleAdminGroup.description}
-                        euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida<br/>euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida
-                    </DialogContentText>
-                </div>
-              
-                </div>
-                </DialogContent>
-                <div className="detailsButtons">
-                <Stack direction="row" spacing={2}>
-                <Button onClick={onEditFormSubmit} variant="contained">Update</Button></Stack>
-                <Button onClick={ViewLessDetails}>Cancel</Button>
-                </div>
-              </Dialog> */}
       </div>
         
     }

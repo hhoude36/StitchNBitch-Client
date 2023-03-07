@@ -1,0 +1,15 @@
+.groupUsersImages{
+    display:flex;
+    flex-wrap: wrap;
+    align-items: center;
+    padding: 4px;
+    margin-left: 4px;
+}
+
+.singleMemberInGroup{
+    padding: 4px;
+}
+
+.groupMembersTitle{
+    margin-top: 40px; 
+}

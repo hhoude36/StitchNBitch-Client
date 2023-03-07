@@ -29,7 +29,7 @@ export default function Homepage() {
           <Button className="joinTodayButton" color="secondary" variant="contained" component="label"> Sign up today</Button>
         </div>
         {/* <Footer/> */}
-        `</div>
+        </div>
 
     {/* PHONE VIEW DIV  */}
     {/* ==================================== */}
