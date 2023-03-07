@@ -11,11 +11,30 @@ import './GroupCard.css';
 export default function GroupCard(props) {
     const { user, setUser, isLoggedIn, setIsLoggedIn, singleGroup, LeaveGroup } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
+    const [groupUsers, setGroupUsers] = useState([]);
+    const [groupAdmin, setGroupAdmin] = useState([]);
 
     function onViewButtonClicked() {
         console.log("view details was clicked");
         setViewDetailsClicked(!viewDetailsClicked);
+        GetUsersInGroup(singleGroup.groupid);
+        GetGroupAdminImage(singleGroup.group.adminid);
     }
+
+    async function GetUsersInGroup(id){
+        console.log("I am hitting get all users in group function")
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
+        res = await res.json();
+        setGroupUsers(res);
+    }
+
+    async function GetGroupAdminImage(id){
+        console.log("I am hitting get admin of group function")
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/getadmin/${id}`)
+        res = await res.json();
+        setGroupAdmin(res);
+    }
+
 
 
     let viewDetailsArea= <Button onClick={onViewButtonClicked} 
@@ -23,7 +42,10 @@ export default function GroupCard(props) {
     if (viewDetailsClicked) {
         viewDetailsArea =
             <div>
-                <Groupdetailsmodal  
+                <Groupdetailsmodal 
+                groupAdmin={groupAdmin}
+                groupUsers={groupUsers}
+                GetUsersInGroup={GetUsersInGroup} 
                 LeaveGroup={LeaveGroup} 
                 user={user} 
                 isLoggedIn={isLoggedIn} 
@@ -47,7 +69,7 @@ export default function GroupCard(props) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            <p>{singleGroup.group.name}</p>
+                            {singleGroup.group.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {singleGroup.group.city}, {singleGroup.group.state}

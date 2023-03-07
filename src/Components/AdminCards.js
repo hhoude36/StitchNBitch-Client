@@ -19,7 +19,8 @@ export default function AdminCards(props) {
         EditGroup,
         GetAllAdminGroups } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
-  
+    const [groupUsers, setGroupUsers] = useState([]);
+
 
 
     //BUTTONS CLICKED AREA
@@ -27,8 +28,16 @@ export default function AdminCards(props) {
     function onViewButtonClicked() {
         console.log("view details was clicked");
         setViewDetailsClicked(!viewDetailsClicked);
+        GetUsersInGroup(singleAdminGroup.groupid);
+
     }
 
+    async function GetUsersInGroup(id){
+        console.log("I am hitting get all users in group function")
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
+        res = await res.json();
+        setGroupUsers(res);
+    }
 
 
     //View Details area
@@ -39,6 +48,7 @@ export default function AdminCards(props) {
         viewDetailsArea =
         <div>
         <AdminGroupDetails 
+        groupUsers={groupUsers}
         GetAllAdminGroups={GetAllAdminGroups}
         EditGroup={EditGroup}
         DeleteGroup={DeleteGroup}
@@ -69,7 +79,7 @@ export default function AdminCards(props) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            <p>{singleAdminGroup.name}</p>
+                            {singleAdminGroup.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {singleAdminGroup.city}, {singleAdminGroup.state}

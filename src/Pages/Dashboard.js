@@ -12,7 +12,7 @@ import { Link } from "react-router-dom";
 import Stack from '@mui/material/Stack';
 import AddIcon from '@mui/icons-material/Add';
 import CreateGroup from '../Components/CreateGroup'
-import AdminCards from "../Components/AdminCards";
+import AdminCards from "../Components/adminCards";
 import './GroupCards.css';
 
 
@@ -139,7 +139,6 @@ function onNoThanksCLicked(event) {
       console.log("I am hitting LeaveGroup function on Group Page" + id)
       let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/deletegroupmember/${id}`);
       res = await res.json();
-      console.log(res);
       GetAllUserGroups()
   }
   //EDIT GROUP (ADMIN)

@@ -65,7 +65,7 @@ export default function GroupsByCityCard(props) {
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            <p>{singleGroup.name}</p>
+                                {singleGroup.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
                             {singleGroup.city}, {singleGroup.state}
@@ -80,11 +80,7 @@ export default function GroupsByCityCard(props) {
 
 
 
-            {/* <h3> {singleGroup.name}</h3>
-            <p> {singleGroup.city}</p>
-            <p> {singleGroup.state}</p>
-            <button onClick={onViewButtonClicked}>View Details</button>
-            {viewDetailsArea} */}
+           
         </div>
     )
 }

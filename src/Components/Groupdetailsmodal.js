@@ -2,14 +2,14 @@ import DialogTitle from '@mui/material/DialogTitle';
 import Dialog from '@mui/material/Dialog';
 import DialogContent from '@mui/material/DialogContent';
 import DialogContentText from '@mui/material/DialogContentText';
-import {useState} from 'react'
+import {useState, useEffect} from 'react'
 import * as React from 'react';
 import Button from '@mui/material/Button';
 import Stack from '@mui/material/Stack';
 import '../Pages/GroupCards.css';
 import Typography from '@mui/material/Typography';
 import { getAccordionActionsUtilityClass } from '@mui/material';
-
+import './GroupDetails.css';
 
 
 
@@ -28,7 +28,9 @@ const style = {
 
 export default function GroupDetailsModal(props){
     const {user, 
+        groupAdmin,
         singleGroup, 
+        groupUsers,
         viewDetailsClicked, 
         setViewDetailsClicked, 
         onViewButtonClicked,
@@ -36,14 +38,18 @@ export default function GroupDetailsModal(props){
         open,
         GetAllUserGroups,
         // setOpen, 
-        handleClose
+        handleClose,
+        GetUsersInGroup,
+        
             } = props;
+
 
 
     function OnLeaveClick(){
         console.log("leave group clicked");
         setViewDetailsClicked(!open)
         LeaveGroup(singleGroup.id);
+        console.log(singleGroup.id)
     }
 
     function ViewLessDetails(e){
@@ -51,6 +57,23 @@ export default function GroupDetailsModal(props){
         console.log("view less details clicked")
         onViewButtonClicked();
     }
+//GROUP USERS AREA
+//============================================================
+    let groupUsersArea;
+    if(groupUsers.length > 0){
+        groupUsersArea = groupUsers.map(function(singleGroupUser){
+            return(
+                <div className= "singleMemberInGroup">
+                    <img width= "50" src={singleGroupUser.user.imagename} ></img>
+                </div>
+            )
+        })}
+
+    else{
+        groupUsersArea="";
+    }
+
+
 
 
     return(
@@ -106,7 +129,16 @@ export default function GroupDetailsModal(props){
                         {singleGroup.group.description}
                         euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida<br/>euismod quis viverra nibh cras pulvinar mattis nunc sed blandit libero volutpat sed cras ornare arcu dui vivamus arcu felis bibendum ut tristique et egestas quis ipsum suspendisse ultrices gravida
                     </DialogContentText>
+                <div className="groupMembersTitle">
+                    <Typography  variant="body1" component="p">
+                       This group has {groupUsers.length} active members. 
+                    </Typography>
+                <div className="groupUsersImages">
+                    {groupUsersArea}
                 </div>
+                </div>
+                </div>
+
               
                 </div>
                 </DialogContent>
