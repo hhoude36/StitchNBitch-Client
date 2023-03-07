@@ -28,6 +28,7 @@ const style = {
 
 export default function GroupDetailsModal(props){
     const {user, 
+        setGroupAdmin,
         groupAdmin,
         singleGroup, 
         groupUsers,
@@ -43,7 +44,7 @@ export default function GroupDetailsModal(props){
         
             } = props;
 
-
+    // console.log(groupAdmin.results.imagename)
 
     function OnLeaveClick(){
         console.log("leave group clicked");
@@ -67,12 +68,28 @@ export default function GroupDetailsModal(props){
                     <img width= "50" src={singleGroupUser.user.imagename} ></img>
                 </div>
             )
-        })}
-
+        })
+    }
     else{
         groupUsersArea="";
     }
+    console.log(groupAdmin.results.imagename)
 
+//trying the same for admins
+    // let groupAdminArea= <img width="50" src={groupAdmin.results.imagename}></img>;
+let groupAdminArea=""
+    // if(groupAdmin.length > 0){
+    //     groupAdminArea = groupUsers.map(function(singleGroupAdmin){
+    //         return(
+    //             <div className= "singleMemberInGroup">
+    //                 <img width= "50" src={singleGroupAdmin.results.imagename} ></img>
+    //             </div>
+    //         )
+    //     })}
+
+    // else{
+    //     groupAdminArea="";
+    // }
 
 
 
@@ -82,15 +99,25 @@ export default function GroupDetailsModal(props){
             <Dialog onClose={handleClose} open={open}>
                 <img src={singleGroup.group.imagename}
                 height="300"/>
-                <div className="modalTitleDiv">
+                
+                <div className="titleAndAdmin">
                 <Typography className="modalName" variant="h4" component="p">
                 {singleGroup.group.name}
                 </Typography>
 
+                <div className="adminImageTitle">
+                    <img width="50"src={groupAdmin.results.imagename}></img>
                 <Typography className="modalName" variant="body1" component="p">
-                {singleGroup.group.city}, {singleGroup.group.state}
+                Group Admin
                 </Typography>
                 </div>
+                </div>
+
+                
+                <Typography className="location" variant="body1" component="p">
+                {singleGroup.group.city}, {singleGroup.group.state}
+                </Typography>
+                
                 <DialogContent>
                 
                 <div className="allModalInfo">
