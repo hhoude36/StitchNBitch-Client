@@ -73,7 +73,6 @@ export default function GroupDetailsModal(props){
     else{
         groupUsersArea="";
     }
-    console.log(groupAdmin.results.imagename)
 
 //trying the same for admins
     // let groupAdminArea= <img width="50" src={groupAdmin.results.imagename}></img>;
