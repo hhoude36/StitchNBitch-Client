@@ -106,7 +106,7 @@ let groupAdminArea=""
                 </Typography>
 
                 <div className="adminImageTitle">
-                    {/* here the image name is giving an error- needs to be fixed. */}
+                    {/* here the imagename is giving an error- needs to be fixed. */}
                     <img width="50"src={"https://res.cloudinary.com/dqfviar71/image/upload/v1675631922/alex-mccarthy-RGKdWJOUFH0-unsplash_mj1wjq.jpg"}></img>
                 <Typography className="modalName" variant="body1" component="p">
                 Group Admin
