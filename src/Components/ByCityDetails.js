@@ -14,11 +14,11 @@ export default function ByCityDetails(props) {
         viewDetailsClicked,
         setViewDetailsClicked,
         onViewButtonClicked,
-        LeaveGroup,
         open,
         OnJoinClick } = props;
     
     const [joinMeClicked, setJoinMeClicked] = useState(false);
+    const [groupUsers, setGroupUsers] = useState([]);
 
 
     function ViewLessDetails(e) {
@@ -27,16 +27,34 @@ export default function ByCityDetails(props) {
         onViewButtonClicked();
     }
 
+
+    //FINISH CHECKS!
+    //========================================================
+    async function CheckForRepeatsInGroup(id){
+        let id = singleGroup.id
+        console.log("I am hitting get all users in group function")
+        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
+        res = await res.json();
+        setGroupUsers(res);
+        //see what this looks like
+        if(groupUsers.includes(user.id)){
+            return false
+        }
+        else{
+            return true
+        }
+
+    }
+
+
     function JoinMe(e) {
         e.preventDefault();
         console.log("leave group clicked");
+        CheckForRepeatsInGroup()
         OnJoinClick(singleGroup.id);
         setJoinMeClicked(!joinMeClicked);
     }
-    // function OnLeaveClick(){
-    //     console.log("leave group clicked");
-    //     LeaveGroup(singleGroup.id)
-    // }
+ 
 let detailsButtons = 
 <div className="detailsButtons">
 <Stack direction="row" spacing={2}>

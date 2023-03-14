@@ -25,12 +25,20 @@ export default function GroupsByCityCard(props) {
         // GetAllUserGroups()
     }
 
-   
 
     function onViewButtonClicked(e) {
         // e.preventDefault();
         console.log("view details was clicked");
         setViewDetailsClicked(!viewDetailsClicked);
+    }
+
+   
+        async function GetUsersInGroup(id){
+            console.log("I am hitting get all users in group function")
+            let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
+            res = await res.json();
+            setGroupUsers(res);
+        }
     }
 
 
@@ -47,7 +55,6 @@ export default function GroupsByCityCard(props) {
                     setViewDetailsClicked={setViewDetailsClicked}
                     OnJoinClick={OnJoinClick} 
                     onViewButtonClicked={onViewButtonClicked}/> 
-                
                     <button onClick={onViewButtonClicked}>Less Info</button>   
                    </div>
                  }
