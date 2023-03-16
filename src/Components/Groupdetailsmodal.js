@@ -64,7 +64,7 @@ export default function GroupDetailsModal(props){
     if(groupUsers.length > 0){
         groupUsersArea = groupUsers.map(function(singleGroupUser){
             return(
-                <div key= {singleGroupUser.imagename} className= "singleMemberInGroup">
+                <div key= {singleGroupUser.user.imagename} className= "singleMemberInGroup">
                     <img width= "50" src={singleGroupUser.user.imagename} ></img>
                 </div>
             )

@@ -157,27 +157,8 @@ function onNoThanksCLicked(event) {
         });
         res = await res.json();
         GetAllAdminGroups()
-        //do I need to change state?
       }
 
-//EDIT GROUP PHOTO (ADMIN)
-  //========================================
-  // async function EditGroupPhoto(editGroupPhoto, id) {
-  //   console.log("I am hitting the edit group photo function")
-  //   let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/editphoto/${id}`,
-  //       {
-  //           method: 'POST',
-  //           mode: 'cors',
-  //           headers: {
-  //               'Accept': 'application/json',
-  //               'Content-Type': 'application/json'
-  //           },
-  //           body: JSON.stringify(editGroupPhoto)
-  //       });
-  //       res = await res.json();
-  //       GetAllAdminGroups()
-  //       //do I need to change state?
-  //     }
 
 //CREATE NEW GROUP 
 //====================
@@ -218,11 +199,10 @@ useEffect(() => {
   if (adminGroups.length > 0) {
       theAdminGroupCards = adminGroups.map(function (singleAdminGroup) {
           return (
-      <div>
+      <div  key={singleAdminGroup.id}>
               <AdminCards
               EditGroup={EditGroup}
               DeleteGroup={DeleteGroup}
-              key={user.id}
               GetAllAdminGroups={GetAllAdminGroups} 
               user={user} 
               setUser={setUser} 
@@ -251,10 +231,9 @@ useEffect(() => {
     if (userGroups.length > 0) {
         theGroupCards = userGroups.map(function (singleGroup) {
             return (
-        <div>
+        <div  key={singleGroup?.group?.id}>
             
                 <GroupCard 
-                key={user.id}
                 GetAllUserGroups={GetAllUserGroups} 
                 LeaveGroup={LeaveGroup} 
                 user={user} 
@@ -340,7 +319,7 @@ useEffect(() => {
      
 
       <div className="sadLadyDiv">
-                <img class="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>
+                <img className="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>
                 <Typography className="homeType" variant="body1" component="p">
                         Haven't quite found  what you're looking for? <br/>
                 </Typography>

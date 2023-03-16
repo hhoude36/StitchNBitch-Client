@@ -26,7 +26,6 @@ export default function Searchpage(props) {
     function onFormSubmit(event) {
         event.preventDefault();
         SearchGroupsByCity(citySearched);
-        console.log(citySearched)
     }
 
     async function SearchGroupsByCity(citySearched) {
@@ -34,7 +33,6 @@ export default function Searchpage(props) {
         let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findbycity/${citySearched}`)
         res = await res.json();
         setCityGroups(res.results);
-        console.log(res)
     }
 
 
@@ -107,7 +105,7 @@ export default function Searchpage(props) {
             </div> 
                 {setCityGroups}
             <div className="sadLadyDiv">
-                <img class="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>
+                <img className="sadLady" width="400" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675609728/5270_lrbaxg.jpg"/>
                 <Typography className="homeType" variant="body1" component="p">
                         Didn't quite find what you're looking for? <br/>
                 </Typography>

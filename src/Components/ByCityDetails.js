@@ -10,15 +10,17 @@ import Typography from '@mui/material/Typography';
 
 export default function ByCityDetails(props) {
     const { user,
+        groupUsers,
+        setGroupUsers,
         singleGroup,
         viewDetailsClicked,
         setViewDetailsClicked,
         onViewButtonClicked,
         open,
+        FindMatchingUsers,
         OnJoinClick } = props;
     
     const [joinMeClicked, setJoinMeClicked] = useState(false);
-    const [groupUsers, setGroupUsers] = useState([]);
 
 
     function ViewLessDetails(e) {
@@ -28,29 +30,25 @@ export default function ByCityDetails(props) {
     }
 
 
-    //FINISH CHECKS!
-    //========================================================
-    async function CheckForRepeatsInGroup(id){
-        let id = singleGroup.id
-        console.log("I am hitting get all users in group function")
-        let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
-        res = await res.json();
-        setGroupUsers(res);
-        //see what this looks like
-        if(groupUsers.includes(user.id)){
-            return false
-        }
-        else{
-            return true
-        }
-
-    }
-
+    // // FINISH CHECKS!
+    // // ========================================================
+    // async function isUserInGroupAlready(){
+    //   let res;
+    //     for(let groupUser of groupUsers){
+    //     if(groupUser.id == user.id ){
+    //      break
+    //      res = true
+    //     }
+    //     else{res= false}
+    // }
+    // console.log(res)
+    // return res
+    // }
 
     function JoinMe(e) {
         e.preventDefault();
         console.log("leave group clicked");
-        CheckForRepeatsInGroup()
+        // CheckForRepeatsInGroup()
         OnJoinClick(singleGroup.id);
         setJoinMeClicked(!joinMeClicked);
     }
@@ -62,7 +60,7 @@ let detailsButtons =
 <Button onClick={ViewLessDetails}>Less Information</Button>
 </div>
 
-if(joinMeClicked){
+if(joinMeClicked || FindMatchingUsers()){
  detailsButtons=
  <div className="detailsButtons">
 <div style={{ color:"green"}}>

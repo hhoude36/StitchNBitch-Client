@@ -65,15 +65,15 @@ export default function GroupCard(props) {
                     <CardMedia
                         component="img"
                         height="140"
-                        image= {singleGroup.group.imagename}
+                        image= {singleGroup?.group?.imagename}
                         alt="group image"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {singleGroup.group.name}
+                            {singleGroup?.group?.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {singleGroup.group.city}, {singleGroup.group.state}
+                            {singleGroup?.group?.city}, {singleGroup?.group?.state}
                         </Typography>
                     </CardContent>
                 </CardActionArea>

@@ -112,7 +112,7 @@ let groupUsersArea;
 if(groupUsers.length > 0){
     groupUsersArea = groupUsers.map(function(singleGroupUser){
         return(
-            <div className= "singleMemberInGroup">
+            <div key={singleGroupUser.user.imagename}className= "singleMemberInGroup">
                 <img width= "50" src={singleGroupUser.user.imagename} ></img>
             </div>
         )

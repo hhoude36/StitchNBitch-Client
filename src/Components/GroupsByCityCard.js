@@ -12,6 +12,8 @@ export default function GroupsByCityCard(props) {
     const { user, setUser, isLoggedIn, setIsLoggedIn, singleGroup, LeaveGroup, JoinGroup } = props
     const [viewDetailsClicked, setViewDetailsClicked] = useState(false)
     const [joinClicked, setJoinClicked] = useState(false);
+    const [groupUsers, setGroupUsers] = useState([]);
+
     const [newMember, setNewMember] = useState({
         userid: user.id,
         groupid: singleGroup.id,
@@ -30,16 +32,30 @@ export default function GroupsByCityCard(props) {
         // e.preventDefault();
         console.log("view details was clicked");
         setViewDetailsClicked(!viewDetailsClicked);
+        GetUsersInGroup(singleGroup.id)
     }
 
-   
-        async function GetUsersInGroup(id){
+
+    async function GetUsersInGroup(id){
             console.log("I am hitting get all users in group function")
             let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/groups/findgroupmembers/${id}`)
             res = await res.json();
             setGroupUsers(res);
         }
-    }
+    
+
+            // FINISH CHECKS!
+    // ========================================================
+     function FindMatchingUsers(){
+       const result = groupUsers.find(({userid}) => userid === user.id )
+       if(result !== undefined){
+        return true 
+       }
+       else{return false}
+      }
+
+  
+
 
 
     let viewDetailsArea = <Button onClick={onViewButtonClicked} 
@@ -48,6 +64,9 @@ export default function GroupsByCityCard(props) {
    
         viewDetailsArea = <div>
                     <ByCityDetails
+                    FindMatchingUsers={FindMatchingUsers}                    
+                    groupUsers={groupUsers}
+                    setGroupUsers={setGroupUsers}
                     LeaveGroup={LeaveGroup}
                     user={user} isLoggedIn={isLoggedIn}
                     singleGroup={singleGroup}
@@ -71,7 +90,7 @@ export default function GroupsByCityCard(props) {
                         alt="group image"
                     />
                     <CardContent>
-                        <Typography gutterBottom variant="h5" component="div">
+                        <Typography gutterBottom variant="h5" component="h3">
                                 {singleGroup.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
