@@ -44,7 +44,7 @@ export default function GroupDetailsModal(props){
         
             } = props;
 
-    // console.log(groupAdmin.results.imagename)
+    console.log(groupAdmin?.results?.imagename)
 
     function OnLeaveClick(){
         console.log("leave group clicked");
@@ -64,7 +64,7 @@ export default function GroupDetailsModal(props){
     if(groupUsers.length > 0){
         groupUsersArea = groupUsers.map(function(singleGroupUser){
             return(
-                <div className= "singleMemberInGroup">
+                <div key= {singleGroupUser.user.imagename} className= "singleMemberInGroup">
                     <img width= "50" src={singleGroupUser.user.imagename} ></img>
                 </div>
             )
@@ -106,7 +106,7 @@ let groupAdminArea=""
 
                 <div className="adminImageTitle">
                     {/* here the imagename is giving an error- needs to be fixed. */}
-                    <img width="45"src={"https://res.cloudinary.com/dqfviar71/image/upload/v1675631922/alex-mccarthy-RGKdWJOUFH0-unsplash_mj1wjq.jpg"}></img>
+                    <img width="45"src={groupAdmin?.results?.imagename}></img>
                 <Typography className="modalName" variant="body1" component="p">
                 Group Admin
                 </Typography>

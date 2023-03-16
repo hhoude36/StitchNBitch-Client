@@ -34,14 +34,14 @@ export default function Homepage() {
     {/* PHONE VIEW DIV  */}
     {/* ==================================== */}
 
-      <div class="phoneDiv">
+      <div className="phoneDiv">
 
     {/* INDIVIDUAL PHONE */}
     {/* ==================================== */}
 
         <div className="phoneAndText, phonediv1">
           <Typography className="text" variant="h4" component="p">
-        <span variant="h1" class="firstword">Archive</span>  <br/> your projects.
+        <span variant="h1" className="firstword">Archive</span>  <br/> your projects.
           </Typography>
           <img className="phone" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675548060/mobile_1_dqdzq5.png" alt="React Image" />
         </div>
@@ -52,7 +52,7 @@ export default function Homepage() {
 
     <div className="phoneAndText, phonediv2">
           <Typography className="text" variant="h4" component="p">
-          <span class="firstword">Discover</span> <br/> crafting circles.
+          <span className="firstword">Discover</span> <br/> crafting circles.
           </Typography>
           <img className="phone" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675651306/Search_cv8fbw.png" alt="React Image" />
         </div>
@@ -63,7 +63,7 @@ export default function Homepage() {
 
     <div className="phoneAndText, phonediv3">
           <Typography className="text" variant="h4" component="p">
-          <span class="firstword">Create</span> <br/> your own.
+          <span className="firstword">Create</span> <br/> your own.
           </Typography>
           <img className="phone" src="https://res.cloudinary.com/dqfviar71/image/upload/v1675651310/Deshboard_ir0wqy.png" alt="React Image" />
         </div>

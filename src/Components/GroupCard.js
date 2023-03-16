@@ -28,7 +28,6 @@ export default function GroupCard(props) {
         setGroupUsers(res);
     }
 
-    //doesn't seem to update for each group
     async function GetGroupAdminImage(id){
         console.log("I am hitting get admin of group function")
         let res = await fetch(`${process.env.REACT_APP_SERVER_URL}/users/getadmin/${id}`)
@@ -66,15 +65,15 @@ export default function GroupCard(props) {
                     <CardMedia
                         component="img"
                         height="140"
-                        image= {singleGroup.group.imagename}
+                        image= {singleGroup?.group?.imagename}
                         alt="group image"
                     />
                     <CardContent>
                         <Typography gutterBottom variant="h5" component="div">
-                            {singleGroup.group.name}
+                            {singleGroup?.group?.name}
                         </Typography>
                         <Typography variant="body2" color="text.secondary">
-                            {singleGroup.group.city}, {singleGroup.group.state}
+                            {singleGroup?.group?.city}, {singleGroup?.group?.state}
                         </Typography>
                     </CardContent>
                 </CardActionArea>
